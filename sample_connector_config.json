@@ -1,0 +1,47 @@
+{
+  "name": "HttpSinkConnectorTest",
+  "config": {
+    "connector.class": "io.confluent.connect.http.HttpSinkConnector",
+    "topics": "http-sink-test-topic",
+
+    "http.api.url": "http://host.docker.internal:8000/api/messages",
+    "http.client.ssl.enabled": "false",
+    "http.client.auth.type": "none",
+
+
+    "tasks.max": "1",
+
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    
+    "value.converter.schemas.enable": "false",
+    "confluent.topic.bootstrap.servers": "host.docker.internal:49092",
+    "confluent.topic.replication.factor": "1",
+
+    
+    "http.request.timeout.ms": "30000",
+    "http.connect.timeout.ms": "30000",
+    "retry.backoff.ms": "500",
+    "retry.on.status.codes": "500,503",
+    "max.retries": "3",
+    
+    "request.method": "post",
+    "headers":"Content-Type:application/json|Accept:application/json",
+    "request.body.format": "json",
+    
+    "behavior.on.error": "log",
+    "report.error.as": "error_string",
+
+
+    "http.error.codes": "400,401,403,404,500,503",
+    "errors.tolerance": "all",
+    "errors.log.enable": "true",
+    "errors.log.include.messages": "true",
+    
+    "reporter.bootstrap.servers": "host.docker.internal:49092",
+    "reporter.result.topic.name": "http-sink-success-responses",
+    "reporter.result.topic.replication.factor": 1,
+    "reporter.error.topic.name": "http-sink-error-responses",
+    "reporter.error.topic.replication.factor": 1
+  }
+}

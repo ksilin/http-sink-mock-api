@@ -1,0 +1,43 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "http_mock_fastapi"
+version = "0.1.0"
+authors = [
+    {name = "ksilin"},
+]
+description = "HTTP Mock server for testing Confluent HTTP Sink connector"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "fastapi>=0.101.0",
+    "uvicorn>=0.23.0",
+    "confluent-kafka>=2.3.0",
+    "pydantic>=2.0.0",
+    "python-dotenv>=1.0.0",
+    "taskipy>=1.14.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black>=23.7.0",
+    "isort>=5.12.0",
+    "pytest>=7.4.0",
+]
+
+[tool.black]
+line-length = 88
+target-version = ["py38"]
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.taskipy.tasks]
+start = "uvicorn main:app --reload"
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]
+
