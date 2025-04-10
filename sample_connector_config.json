@@ -23,7 +23,7 @@
     "http.connect.timeout.ms": "30000",
     "retry.backoff.ms": "500",
     "retry.on.status.codes": "500,503",
-    "max.retries": "3",
+    "max.retries": "1",
     
     "request.method": "post",
     "headers":"Content-Type:application/json|Accept:application/json",
@@ -32,11 +32,13 @@
     "behavior.on.error": "log",
     "report.error.as": "error_string",
 
-
     "http.error.codes": "400,401,403,404,500,503",
     "errors.tolerance": "all",
     "errors.log.enable": "true",
     "errors.log.include.messages": "true",
+    "errors.deadletterqueue.topic.name": "http-sink-dlq",
+    "errors.deadletterqueue.topic.replication.factor": "1",
+    "errors.deadletterqueue.context.headers.enable": "true",
     
     "reporter.bootstrap.servers": "host.docker.internal:49092",
     "reporter.result.topic.name": "http-sink-success-responses",
